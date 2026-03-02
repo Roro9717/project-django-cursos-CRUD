@@ -1,0 +1,34 @@
+{% extends 'cursos/base.html' %}
+
+{% block title %}{{ curso.nombre }}{% endblock %}
+
+{% block content %}
+<div class="mb-3">
+    <a href="{% url 'cursos:lista' %}" class="btn btn-outline-secondary btn-sm">← Volver</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">{{ curso.nombre }}</h2>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Instructor</dt>
+            <dd class="col-sm-9">{{ curso.instructor }}</dd>
+
+            <dt class="col-sm-3">Duración</dt>
+            <dd class="col-sm-9">{{ curso.duracion }} horas</dd>
+
+            <dt class="col-sm-3">Descripción</dt>
+            <dd class="col-sm-9">{{ curso.descripcion|default:"—" }}</dd>
+
+            <dt class="col-sm-3">Creado</dt>
+            <dd class="col-sm-9">{{ curso.creado|date:"d/m/Y H:i" }}</dd>
+        </dl>
+    </div>
+    <div class="card-footer d-flex gap-2">
+        <a href="{% url 'cursos:editar' curso.pk %}" class="btn btn-secondary">Editar</a>
+        <a href="{% url 'cursos:eliminar' curso.pk %}" class="btn btn-danger">Eliminar</a>
+    </div>
+</div>
+{% endblock %}
