@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 2 - Tags</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1; /* Indigo moderno */
+            --primary-soft: #eef2ff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg-body); 
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .card { 
+            background: var(--card-bg); 
+            padding: 32px; 
+            border-radius: 16px; 
+            max-width: 420px; 
+            width: 100%;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 { 
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            letter-spacing: -0.025em;
+        }
+
+        .student-info {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .student-info strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .tag-list { 
+            padding-left: 0;
+            margin: 0;
+            list-style: none; /* Quitamos el estilo por defecto para hacerlo más UI */
+            counter-reset: my-counter;
+        }
+
+        .tag-item { 
+            counter-increment: my-counter;
+            background: var(--bg-body);
+            margin-bottom: 8px; 
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .tag-item:hover {
+            transform: translateX(4px);
+            border-color: var(--primary);
+            background: var(--primary-soft);
+        }
+
+        /* Creamos un marcador de lista personalizado y elegante */
+        .tag-item::before {
+            content: counter(my-counter);
+            background: var(--primary);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .empty-msg {
+            color: var(--text-muted);
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Tarea 2</h1>
+        <span class="student-info">Estudiante: <strong>{{ estudiante }}</strong></span>
+        
+        <h3>Tecnologías (Tags)</h3>
+        <ol class="tag-list">
+            {% for tag in tags %}
+                <li class="tag-item">{{ tag }}</li>
+            {% empty %}
+                <li class="empty-msg">No hay etiquetas disponibles.</li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>
+</html>

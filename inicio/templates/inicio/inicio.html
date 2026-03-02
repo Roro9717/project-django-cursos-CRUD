@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+  <h2>Bienvenido 👋</h2>
+
+  <p>
+    Hoy aprenderás <b>Templates</b>: variables, tags y herencia.
+  </p>
+
+  <p class="muted">
+    Fecha/hora (desde la vista): <b>{{ ahora|date:"d/m/Y H:i" }}</b>
+  </p>
+
+  <h3>Temas de hoy</h3>
+  <ul>
+    {% for tema in temas %}
+      <li>{{ tema }}</li>
+    {% endfor %}
+  </ul>
+
+  {% if modo == "practica" %}
+    <p><b>Modo:</b> práctica ✅</p>
+  {% else %}
+    <p><b>Modo:</b> lectura</p>
+  {% endif %}
+{% endblock %}

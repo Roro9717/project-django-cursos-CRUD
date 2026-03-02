@@ -1,0 +1,31 @@
+{% load static %}
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{% block titulo %}{% endblock %} | Curso Django</title>
+  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+  <header class="encabezado">
+    <div class="contenedor">
+      <h1>Curso de Desarrollo Web con Django | Posgrado UPEA</h1>
+      <nav class="nav">
+        <a href="{% url 'inicio' %}">Inicio</a>
+        <a href="{% url 'temario' %}">Temario</a>
+        <a href="{% url 'acerca' %}">Acerca</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    {% block contenido %}{% endblock %}
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">2026 - Team PSG - Brayan Condori Choque</div>
+  </footer>
+</body>
+</html>
